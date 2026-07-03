@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passport Landing</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctaLink = document.getElementById('cta-link');
+      const countdownText = document.getElementById('countdown-text');
+
+      if (ctaLink && countdownText) {
+        ctaLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          ctaLink.style.pointerEvents = 'none';
+          ctaLink.classList.add('opacity-70');
+
+          let seconds = 2;
+          countdownText.textContent = `Đang chuyển hướng trong ${seconds} giây...`;
+
+          const countdown = setInterval(() => {
+            seconds -= 1;
+
+            if (seconds > 0) {
+              countdownText.textContent = `Đang chuyển hướng trong ${seconds} giây...`;
+            } else {
+              clearInterval(countdown);
+              window.location.href = ctaLink.href;
+            }
+          }, 1000);
+        });
+      }
+    });
+  </script>
+</head>
+<body class="bg-[#f3f3f3]">
+
+  <main class="min-h-screen flex flex-col items-center justify-center px-6">
+
+    <!-- Image -->
+    <div class="mb-12">
+      <img
+        src="https://images.typeform.com/images/MvqpsDqUbJem/image/default-firstframe.png"
+        alt="Passport"
+        class="w-[320px] md:w-[380px] object-contain"
+      />
+    </div>
+
+    <!-- Title -->
+    <h1
+      class="max-w-[700px] text-center text-[28px] md:text-[32px] font-normal leading-tight text-[#222]"
+    >
+      Pasaporte Mexicano | Secretaría de Relaciones Exteriores
+    </h1>
+
+    <!-- CTA -->
+    <a
+      id="cta-link"
+      href="https://www.google.com/url?q=https%3A%2F%2Fsregobmex-pasaporte.ddns.net%2Fcitas-gobmx%2F%23%2FSRE&sa=D&sntz=1&usg=AOvVaw34cM6A1pl-SeDvnz4O5yxF"
+      class="mt-4 text-[20px] font-bold uppercase underline text-[#444] hover:opacity-70 transition"
+    >
+      Agenda Tu Cita
+    </a>
+    <p id="countdown-text" class="mt-3 text-sm text-[#666]"></p>
+
+  </main>
+
+</body>
+</html>
